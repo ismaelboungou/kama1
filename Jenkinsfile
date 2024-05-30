@@ -1,20 +1,15 @@
 pipeline {
-    agent any 
+    agent any
+
     stages {
-        stage('checkout') { 
+        stage('Clone Repository') {
             steps {
-                checkout scm
+                git 'https://github.com/yourusername/your-repo.git'
             }
         }
-        stage('Test') { 
+        stage('Build Docker Image') {
             steps {
-		sh 'echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers sudo -S apt install npm'
-                sh 'npm test'
-            }
-        }
-        stage('Build') { 
-            steps {
-                sh 'npm run build'
+                sh 'bash deploy.sh'
             }
         }
     }
