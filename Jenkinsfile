@@ -1,15 +1,19 @@
 pipeline {
-    agent any
-
+    agent any 
     stages {
-        stage('Clone Repository') {
+        stage('checkout') { 
             steps {
-                git 'https://github.com/ismaelboungou/kama1.git'
+                checkout scm
             }
         }
-        stage('Build Docker Image') {
+        stage('Test') { 
             steps {
-                sh 'bash deploy.sh'
+                sh 'npm test'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh 'npm run build'
             }
         }
     }
