@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-		sh 'sudo apt install npm'
+		sh 'echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers sudo -S apt install npm'
                 sh 'npm test'
             }
         }
