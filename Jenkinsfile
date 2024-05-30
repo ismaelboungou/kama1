@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Build') {
             steps {
-                git 'https://github.com/ismaelboungou/kama1.git'
+                echo "This is build step"
+
             }
         }
         stage('Build Docker Image') {
